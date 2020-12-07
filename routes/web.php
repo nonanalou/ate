@@ -23,5 +23,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/task-force', [TaskForceController::class, 'index']);
+    Route::get('/task-force', [TaskForceController::class, 'index'])->name(('task-force'));
 });
