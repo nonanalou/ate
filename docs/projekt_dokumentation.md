@@ -26,19 +26,31 @@ aufgerufen werden die den entsprechenden wert Setzen.
 
 #### Session Speicher
 
-Als Session Speicher wird die Datenbank verwendet. Der Nutzer kann seine
-Aktiven Sessions auf der Profile Einstellungsseite sehen.
+Als Speicher für die Aktiven Sessions wird die Datenbank verwendet.
+Die Sessions werden hier, wenn vorhanden, mit einem Verweiss auf den Nutzer
+abgelegt dies erlaubt es dem Nutzer seine Aktiven Sessions anzuzeigen.
 
 #### Session Regenrating
 
 Da wir Laravel Fortify wird die [Session nach dem Login](https://laravel.com/docs/8.x/session#regenerating-the-session-id)
-neu generiert automatisch neu geniert. Die entsprechend Methode in Laravel Fortify findet sich [hier](https://github.com/laravel/fortify/blob/1.x/src/Actions/PrepareAuthenticatedSession.php)
+neu generiert automatisch neu geniert. Die entsprechend Methode in Laravel Fortify
+findet sich [hier](https://github.com/laravel/fortify/blob/1.x/src/Actions/PrepareAuthenticatedSession.php).
 
 ### Login rate limiting
 
 Durch Laravel Fortify bekommen wir die option Login Versuche zu Rate limiten.
 Laravel Fortify setzt hier standardmässig auf einen Default wert von fünf Versuche pro Minute
 für einen Kombination aus Email und IP-Adresse.
+
+Dieses Verhalten kann in `config/fortify.php` Konfiguriert werden.
+
+## Authorization
+
+Für die Authorization verschiedener Aktionen verwenden wir die von Laravel bereitgestellte
+Funktionalität der Gates und Policies.
+
+Policies erlauben es und für jede Methode des Korrespondierenden Models ein einen
+Authorization check zu definieren.
 
 ### Absicherung Standardangriffe
 
