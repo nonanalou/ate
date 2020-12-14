@@ -26,17 +26,33 @@ aufgerufen werden die den entsprechenden wert Setzen.
 
 #### Session Speicher
 
-Als Session Speicher wird die Datenbank verwendet. Der Nutzer kann seine Aktiven Sessions auf der Profile
-Einstellungsseite sehen.
+Als Session Speicher wird die Datenbank verwendet. Der Nutzer kann seine
+Aktiven Sessions auf der Profile Einstellungsseite sehen.
 
 #### Session Regenrating
 
-Da wir den Laravel Starter verwenden wurde bereits eine [Middleware Registriert](https://laravel.com/docs/8.x/session#regenerating-the-session-id),
-welche die Session nach dem Login neu generiert.
+Da wir Laravel Fortify wird die [Session nach dem Login](https://laravel.com/docs/8.x/session#regenerating-the-session-id)
+neu generiert automatisch neu geniert. Die entsprechend Methode in Laravel Fortify findet sich [hier](https://github.com/laravel/fortify/blob/1.x/src/Actions/PrepareAuthenticatedSession.php)
+
+### Login rate limiting
+
+Durch Laravel Fortify bekommen wir die option Login Versuche zu Rate limiten.
+Laravel Fortify setzt hier standardmässig auf einen Default wert von fünf Versuche pro Minute
+für einen Kombination aus Email und IP-Adresse.
 
 ### Absicherung Standardangriffe
 
 ## Errorhandling, Logging
+
+Für das Logging verwenden wir die vom Laravel zur verfügung stehende Logging Anbindung.
+Wir haben hier die Möglichkeit zwischen verscheiden Logging Treibern auszuwählen.
+Standardmässig wird Monlog verwendet.
+
+### Logging von Authentifizierungs- und Registrierungsversuche
+
+Laravel Dispatched während der Registrierung und der Authentifizierung des Nutzers
+unterschiedliche Events. Die erlaubt es uns über Eventlistener den Login und
+Registrierungsprozess zu Loggen ohne dabei den Framework Code verändern zu müssen.
 
 ## Eigenes Kriterium
 
@@ -47,3 +63,6 @@ Jeder HTTP POST request auf eine Route die Teil der `web` Middleware Gruppe ist 
 `VerifyCsrfToken` middleware überprüft und auf ein Vorhandenes CSRF-Token getestet.
 
 Die Middleware kümmert sich auch darum, dass Ajax Requests ein gültiges XSRF Cookie mit senden.
+
+In dem vorherigen Modul 152 hatten wir uns CSRF eigenständig angeschaut.
+Wir hatte hierfür eine simple CSRF Protection geschrieben und eingebaut.
