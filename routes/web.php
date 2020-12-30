@@ -29,4 +29,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Task-Force Routes
     Route::get('/task-forces', [TaskForceController::class, 'index'])->name(('task-forces'));
     Route::get('/task-forces/{taskForce:name}', [TaskForceController::class, 'show'])->name(('task-force'));
+
+    // Projects Routes
+    Route::get('/projects', [ProjectController::class, 'index'])->name(('projects'));
+
+    Route::get('/posts', [PostController::class, 'index'])->name(('posts'));
 });
