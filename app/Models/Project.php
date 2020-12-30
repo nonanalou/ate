@@ -17,5 +17,11 @@ class Project extends Model
     protected $fillable = [
         'name',
         'shortDescription',
+        'owner_taskforce_id'
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(TaskForce::class, 'owner_taskforce_id');
+    }
 }

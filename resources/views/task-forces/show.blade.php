@@ -5,9 +5,9 @@
         </h2>
     </x-slot>
 
-    {{-- @forelse($taskForce->projects as $project )
+    @forelse($taskForce->projects as $project )
         <div> {{ $project->name }}</div>
     @empty
         <div>{{$taskForce->name}} has no projects</div>
-    @endforelse --}}
+    @endforelse
 </x-app-layout>
