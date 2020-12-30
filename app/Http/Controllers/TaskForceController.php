@@ -11,6 +11,7 @@ class TaskForceController extends Controller
     public function index()
     {
         $taskForces = TaskForce::all();
+        //replace later with task-forses of the current user
         return view('task-forces.index', ['taskForces' => $taskForces]);
     }
 

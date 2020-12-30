@@ -24,4 +24,9 @@ class Project extends Model
     {
         return $this->belongsTo(TaskForce::class, 'owner_taskforce_id');
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'project_id');
+    }
 }

@@ -10,7 +10,7 @@
     </x-slot>
     <ul>
         @forelse($projects as $project )
-            <li> {{ $project->name }}</li>
+            <li> <a href="{{route('project', $project)}}">{{ $project->name }}</a></li>
         @empty
             <div>no projects</div>
         @endforelse

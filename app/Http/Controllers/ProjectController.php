@@ -36,4 +36,9 @@ class ProjectController extends Controller
         Log::info("Project '{$project->name}' has been created");
         return redirect()->route('projects');
     }
+
+    public function show(Project $project)
+    {
+        return view('projects.show', ['project' => $project]);
+    }
 }

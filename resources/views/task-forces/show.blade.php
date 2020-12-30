@@ -6,9 +6,13 @@
     </x-slot>
 
     <h3 class="text-cool-gray-800 text-xl font-semibold">Projects</h3>
-    @forelse($taskForce->projects as $project )
-        <div> {{ $project->name }}</div>
-    @empty
-        <div>{{$taskForce->name}} has no projects</div>
-    @endforelse
+    <ul>
+        @forelse($taskForce->projects as $project )
+            <li>
+                <a href="{{route('project', $project)}}">{{ $project->name }}</a>
+            </li>
+        @empty
+            <div>{{$taskForce->name}} has no projects</div>
+        @endforelse
+    </ul>
 </x-app-layout>
