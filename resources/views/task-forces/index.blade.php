@@ -4,9 +4,13 @@
             {{ __('Task-forces') }}
         </h2>
     </x-slot>
-    @forelse($taskForces as $taskForce )
-        <a href="{{route('task-force', $taskForce)}}"> {{ $taskForce->name }}</a>
-    @empty
-        <div>no task-force</div>
-    @endforelse
+    <ul>
+        @forelse($taskForces as $taskForce )
+            <li>
+                <a href="{{route('task-force', $taskForce)}}"> {{ $taskForce->name }}</a>
+            </li>
+        @empty
+            <div>no task-force</div>
+        @endforelse
+    </ul>
 </x-app-layout>

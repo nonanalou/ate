@@ -11,26 +11,26 @@
         @csrf
             <div>
                 <label for="name" class="block">Name</label>
-                <x-jet-input type="text" name="project[name]" id="name" value="{{old('project.name')}}"/>
-                @error('project.name')
+                <x-jet-input type="text" name="name" id="name" value="{{old('name')}}"/>
+                @error('name')
                 <div>{{$message}}</div>
                 @enderror
             </div>
             <div>
                 <label for="shortDescription" class="block">short Description</label>
-                <x-jet-input type="text" name="project[shortDescription]" id="shortDescription" value="{{old('project.shortDescription')}}"/>
-                @error('project.shortDescription')
+                <x-jet-input type="text" name="shortDescription" id="shortDescription" value="{{old('shortDescription')}}"/>
+                @error('shortDescription')
                 <div>{{$message}}</div>
                 @enderror
             </div>
             <div>
-                <select name="project[owner]" id="owner">
+                <select name="owner" id="owner">
                     <option value="null" selected disabled>Please choose a Task-Force</option>
                     @foreach ($taskForces as $taskForce)
                     <option value="{{$taskForce->id}}">{{$taskForce->name}}</option>
                     @endforeach
                 </select>
-                @error('project.owner')
+                @error('owner')
                 <div>{{$message}}</div>
                 @enderror
             </div>

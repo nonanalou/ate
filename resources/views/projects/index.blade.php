@@ -8,9 +8,11 @@
             <a href="{{route('new-project')}}" class="bg-pink-500 px-2 rounded-full text-white">+</a>
         </div>
     </x-slot>
-    @forelse($projects as $project )
-        <div> {{ $project->name }}</div>
-    @empty
-        <div>no projects</div>
-    @endforelse
+    <ul>
+        @forelse($projects as $project )
+            <li> {{ $project->name }}</li>
+        @empty
+            <div>no projects</div>
+        @endforelse
+    </ul>
 </x-app-layout>
