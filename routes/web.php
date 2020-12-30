@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskForceController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +25,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/task-force', [TaskForceController::class, 'index'])->name(('task-force'));
+
+    // Task-Force Routes
+    Route::get('/task-forces', [TaskForceController::class, 'index'])->name(('task-forces'));
+    Route::get('/task-forces/{taskForce:name}', [TaskForceController::class, 'show'])->name(('task-force'));
 });
