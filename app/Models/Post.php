@@ -17,5 +17,18 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'published',
+        'project_id',
+        'author_id'
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function parentProject()
+    {
+        return $this->belongsTo(Project::class, 'project_id');
+    }
 }
