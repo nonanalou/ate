@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors')
 
 module.exports = {
     purge: [
@@ -12,6 +13,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'cool-gray': colors.coolGray
+            }
         },
     },
 
@@ -19,5 +23,9 @@ module.exports = {
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
     },
 
-    plugins: [require('@tailwindcss/ui')],
+    plugins: [
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/forms')
+    ],
 };
