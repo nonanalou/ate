@@ -36,4 +36,24 @@ class PostController extends Controller
     {
         return view('posts.show', ['post' => $post]);
     }
+
+    public function edit(Post $post)
+    {
+        $this->authorize('update', $post);
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $this->authorize('update', $post);
+        $values = $request->validate([
+            'title' => 'required|max:40|min:2',
+            'content' => 'required',
+        ]);
+        $post->title = $values['title'];
+        $post->content = $values['content'];
+        $post->save();
+        Log::info("Post '{$post->title}' has been updated");
+        return redirect()->route('post', $post);
+    }
 }

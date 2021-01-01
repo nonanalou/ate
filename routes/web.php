@@ -38,5 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/posts/{post:id}', [PostController::class, 'show'])->name(('post'));
     Route::get('/projects/{project:id}/posts/new', [PostController::class, 'create'])->name(('new-post'));
+    Route::get('posts/{post:id}/edit', [PostController::class, 'edit'])->name(('edit-post'));
+    Route::patch('/posts/{post:id}', [PostController::class, 'update'])->name(('update-post'));
     Route::post('/projects/{project:id}/posts', [PostController::class, 'store'])->name(('store-post'));
 });

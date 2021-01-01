@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <a class="font-semibold text-blue-500" href="{{route('project', $post->parentProject)}}">
-            Back to {{ $post->parentProject->name }}
-        </a>
+        <h2>
+            Post: {{$post->title}}
+        </h2>
     </x-slot>
     <div class="max-w-3xl mx-auto space-y-6">
         <div class="max-w-full p-8 space-y-4 bg-white rounded-md shadow-sm">
@@ -10,10 +10,13 @@
                 <h2 class="text-3xl font-bold">
                     {{$post->title}}
                 </h2>
+                <a href="{{route('project', $post->parentProject)}}">{{'@'.$post->parentProject->name}}</a>
                 <div>
-                    <x-ate-link-secondary-button href="#">
+                    @can('update', $post)
+                    <x-ate-link-secondary-button href="{{route('edit-post', $post)}}">
                         Edit
                     </x-ate-link-secondary-button>
+                    @endcan
                 </div>
             </div>
             <div class="prose prose-lg">
