@@ -47,12 +47,28 @@ Dieses Verhalten kann in `config/fortify.php` Konfiguriert werden.
 ## Authorization
 
 Für die Authorization verschiedener Aktionen verwenden wir die von Laravel bereitgestellte
-Funktionalität der Gates und Policies.
+Funktionalität der [Gates](https://laravel.com/docs/8.x/authorization#gates)
+und [Policies](https://laravel.com/docs/8.x/authorization#creating-policies).
 
-Policies erlauben es und für jede Methode des Korrespondierenden Models ein einen
-Authorization check zu definieren.
+Policies erlauben es und für verschiedene Aktionen des Korrespondierenden Models ein einen
+Authorization check zu definieren. Diese Überprüfung kann dann in den views über die `@can` Funktion.
+und in den Controllern über `$this->authorize('<action name>', <ModelClass>)` durch geführt werden.
 
 ### Absicherung Standardangriffe
+
+## SQL Injections
+
+Wir verwenden in unser Anwendung ausschliesslich Laravel Eloquent Models um mit der Datenbank
+zu interagieren.
+Diese Verwenden wiederum den Laravel QueryBuilder welcher [intern PDO prepared statements](https://laravel.com/docs/8.x/queries#introduction) verwendet.
+
+Die Funktionalität RAW SQL Queries auszuführen wird von uns nicht verwendet.
+
+## Eingeschränkte DB User
+
+Damit die Laravel Database Migrations angewendet werden können wird für das aufsetzen
+der Anwendung ein DB Nutzer mit den rechten zum erstellen von Tabellen benötigt.
+Danach kann für den Betrieb ein stärker eingeschränkter Nutzer verwendet werden.
 
 ## Errorhandling, Logging
 
@@ -66,6 +82,14 @@ Laravel Dispatched während der Registrierung und der Authentifizierung des Nutz
 unterschiedliche Events. Die erlaubt es uns über Eventlistener den Login und
 Registrierungsprozess zu Loggen ohne dabei den Framework Code verändern zu müssen.
 
+### Logging mit Oberservern
+
+Die Eloquent Models dispatchen für die einzelnen CURD Aktionen jeweils Events. Für diese Events
+kann ein Observer Registriert werden der für jedes dieser Events aufgerufen wird.
+Wir verwenden die Möglichkeit um die Events genau so wie bei den Login Events zu loggen. Dies erlaubt
+die einfachen CRUD Änderungen an den Models zu Tracken ohne an jedem Ort wo Änderungen vorgenommen werden
+explizit zu berücksichtigen.
+
 ## Eigenes Kriterium
 
 ### CSRF
@@ -76,5 +100,13 @@ Jeder HTTP POST request auf eine Route die Teil der `web` Middleware Gruppe ist 
 
 Die Middleware kümmert sich auch darum, dass Ajax Requests ein gültiges XSRF Cookie mit senden.
 
-In dem vorherigen Modul 152 hatten wir uns CSRF eigenständig angeschaut.
+In einem der vorherigen Module, 152, hatten wir uns CSRF eigenständig angeschaut.
 Wir hatte hierfür eine simple CSRF Protection geschrieben und eingebaut.
+
+Für dieses Modul verwenden wir die CSRF Protection von Laravel, das Prinzip, wie es implementiert werden kann
+und die Notwendigkeit von CSRF Protection ist uns bekannt.
+
+### 2FA
+
+Wir durch die Verwendung von Laravel Fortify und dem Jetstream starter steht der Anwendung auch die Verwendung
+von 2FA per OTP zur verfügung.
