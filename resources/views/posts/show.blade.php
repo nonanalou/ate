@@ -21,6 +21,18 @@
                     {{ $post->content }}
                 </p>
             </div>
+            <div class="flex">
+                @forelse($post->attachments as $attachment)
+                @if($attachment->type === 'image/png' || $attachment->type === 'image/jpg')
+                <a href="{{ $attachment->url() }}">
+                    <img width="100" height="100" src="{{ $attachment->url() }}" alt="{{$attachment->name}}">
+                </a>
+                @elseif($attachment->type === 'application/pdf' || $attachment->type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                <a href="{{ $attachment->url() }}">{{ $attachment->name }}</a>
+                @endif
+                @empty
+                @endforelse
+            </div>
             <div class="flex items-center p-2 space-x-2 bg-gray-100 rounded">
                 <img class="w-12 h-12 border-2 border-white rounded-full" src="{{ $post->author->profile_photo_url }}" alt="{{ $post->author->name }}">
                 <div class="text-sm">
