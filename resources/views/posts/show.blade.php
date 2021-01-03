@@ -1,16 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2>
-            Post: {{$post->title}}
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            <a class="hover:text-blue-400" href="{{route('task-force', $post->parentProject->owner)}}">{{ $post->parentProject->owner->name }}</a> /
+            <a class="hover:text-blue-400" href="{{route('project', $post->parentProject)}}">{{ $post->parentProject->name }}</a> / {{$post->title}}
         </h2>
     </x-slot>
     <div class="max-w-3xl mx-auto space-y-6">
         <div class="max-w-full p-8 space-y-4 bg-white rounded-md shadow-sm">
             <div class="flex items-center justify-between">
-                <h2 class="text-3xl font-bold">
-                    {{$post->title}}
-                </h2>
-                <a href="{{route('project', $post->parentProject)}}">{{'@'.$post->parentProject->name}}</a>
+                <div>
+                    <h2 class="text-3xl font-bold">
+                        {{$post->title}}
+                    </h2>
+                </div>
                 <div>
                     @can('update', $post)
                     <x-ate-link-secondary-button href="{{route('edit-post', $post)}}">
@@ -40,7 +42,7 @@
                 <img class="w-12 h-12 border-2 border-white rounded-full" src="{{ $post->author->profile_photo_url }}" alt="{{ $post->author->name }}">
                 <div class="text-sm">
                     <div class="font-semibold">Written by {{ $post->author->name }}</div>
-                    <div>Published at {{$post->published}}</div>
+                    <div>Published on {{$post->published}} <a href="{{route('project', $post->parentProject)}}">{{'@'.$post->parentProject->name}}</a></div>
                 </div>
             </div>
         </div>

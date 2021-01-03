@@ -66,6 +66,6 @@ class User extends Authenticatable
 
     public function taskForces()
     {
-        return $this->belongsToMany(TaskForce::class, 'task_force_memberships', 'task_force_id', 'user_id');
+        return $this->belongsToMany(TaskForce::class, 'task_force_memberships', 'user_id', 'task_force_id');
     }
 }
