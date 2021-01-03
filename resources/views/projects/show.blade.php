@@ -17,9 +17,11 @@
         <div class="space-y-2">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-3xl text-cool-gray-800">Posts</h3>
+                @can('create', [\App\Models\Post::class, $project->owner])
                 <x-ate-link-button class="flex items-center space-x-2" href="{{route('new-post', $project)}}">
                     New Post
                 </x-ate-link-button>
+                @endcan
             </div>
             <ul class="grid grid-cols-2 gap-4 md:grid-cols-3">
                 @forelse($project->posts as $post)

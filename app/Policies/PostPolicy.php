@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Post;
+use App\Models\TaskForce;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -39,9 +40,9 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, TaskForce $taskForce)
     {
-        //
+        return $user->isPartOfThe($taskForce);
     }
 
     /**
@@ -51,9 +52,9 @@ class PostPolicy
      * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Post $post, TaskForce $taskForce)
     {
-        return $post->author()->is($user);
+        return $post->author()->is($user) || $user->isPartOfThe($taskForce);;
     }
 
     /**
