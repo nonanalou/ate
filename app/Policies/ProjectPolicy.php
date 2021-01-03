@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\TaskForce;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class ProjectPolicy
 {
@@ -42,7 +43,10 @@ class ProjectPolicy
      */
     public function create(User $user, TaskForce $taskForce)
     {
-        return $user->isPartOfThe($taskForce);
+        if ($user->isPartOfThe($taskForce)) {
+            return true;
+        }
+        Log::error("User {$user->id} tried create a project but does not have the permission");
     }
 
     /**
@@ -54,7 +58,10 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project, TaskForce $taskForce)
     {
-        return $user->isPartOfThe($taskForce);
+        if ($user->isPartOfThe($taskForce)) {
+            return true;
+        }
+        Log::error("User {$user->id} tried update the project {$project->id} but does not have the permission");
     }
 
     /**

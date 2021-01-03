@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\TaskForceMembership;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class TaskForceMembershipPolicy
 {
@@ -48,7 +49,8 @@ class TaskForceMembershipPolicy
      */
     public function create(User $user)
     {
-        //
+        $user = auth()->user();
+        Log::error("User {$user->id} tried to create a member but does not have the permission");
     }
 
     /**

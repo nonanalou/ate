@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\TaskForce;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class PostPolicy
 {
@@ -42,7 +43,10 @@ class PostPolicy
      */
     public function create(User $user, TaskForce $taskForce)
     {
-        return $user->isPartOfThe($taskForce);
+        if ($user->isPartOfThe($taskForce)) {
+            return true;
+        }
+        Log::error("User {$user->id} tried to create a post but does not permission");
     }
 
     /**
@@ -54,7 +58,10 @@ class PostPolicy
      */
     public function update(User $user, Post $post, TaskForce $taskForce)
     {
-        return $post->author()->is($user) || $user->isPartOfThe($taskForce);;
+        if ($post->author()->is($user) || $user->isPartOfThe($taskForce)) {
+            return true;
+        }
+        Log::error("User {$user->id} tried to update a post but does not permission");
     }
 
     /**

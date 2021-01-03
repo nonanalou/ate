@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\TaskForce;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class TaskForcePolicy
 {
@@ -48,7 +49,7 @@ class TaskForcePolicy
      */
     public function create(User $user)
     {
-        //
+        Log::error("User {$user->id} tried to create a taskforce but does not permission");
     }
 
     /**
