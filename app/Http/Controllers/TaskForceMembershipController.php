@@ -12,6 +12,7 @@ class TaskForceMembershipController extends Controller
 {
     public function create(TaskForce $taskForce)
     {
+        $this->authorize('create', TaskForceMembership::class);
         $users = User::whereDoesntHave('taskForces', function (Builder $query) use ($taskForce) {
             $query->where('task_force_id', $taskForce->id);
         })->get();
@@ -20,6 +21,7 @@ class TaskForceMembershipController extends Controller
 
     public function store(TaskForce $taskForce, Request $request)
     {
+        $this->authorize('create', TaskForceMembership::class);
         $values = $request->validate([
             'user_id' => 'exists:users,id|required'
         ]);
