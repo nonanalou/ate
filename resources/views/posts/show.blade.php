@@ -23,8 +23,8 @@
             </div>
             <div class="flex">
                 @forelse($post->attachments as $attachment)
-                @if($attachment->type === 'image/png' || $attachment->type === 'image/jpg')
-                <a href="{{ $attachment->url() }}">
+                @if($attachment->type === 'image/png' || $attachment->type === 'image/jpeg')
+                <a href="{{ $attachment->url() }}" target="_blank">
                     <img width="100" height="100" src="{{ $attachment->url() }}" alt="{{$attachment->name}}">
                 </a>
                 @elseif($attachment->type === 'application/pdf' || $attachment->type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
