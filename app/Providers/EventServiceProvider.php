@@ -4,6 +4,11 @@ namespace App\Providers;
 
 use App\Models\Attachment;
 use App\Observers\AttachmentObserver;
+use App\Listeners\LoginEventSubscriber;
+use App\Models\TaskForce;
+use App\Models\User;
+use App\Observers\TaskForceObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +27,10 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
+    protected $subscribe = [
+        LoginEventSubscriber::class
+    ];
+
     /**
      * Register any events for your application.
      *
@@ -29,6 +38,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserObserver::class);
+        TaskForce::observe(TaskForceObserver::class);
         Attachment::observe(AttachmentObserver::class);
     }
 }
