@@ -16,25 +16,27 @@ class ProjectController extends Controller
         return view('projects.index', ['projects' => $projects]);
     }
 
-    public function create()
+    public function create(TaskForce $taskForce)
     {
-        return view('projects.new', ['taskForces' => TaskForce::all()]);
+        return view('projects.new', ['taskForce' => $taskForce]);
     }
 
-    public function store(Request $request)
+    public function store(TaskForce $taskForce, Request $request)
     {
         $values = $request->validate([
             'name' => 'required|min:7|unique:projects,name',
-            'shortDescription' => 'required',
-            'owner' => 'required|exists:task_forces,id',
+            'shortDescription' => 'required|min:1'
         ]);
+
         $project = Project::create([
             'name' => $values['name'],
             'shortDescription' => $values['shortDescription'],
-            'owner_taskforce_id' => $values['owner']
+            'owner_taskforce_id' => $taskForce->id
         ]);
-        Log::info("Project '{$project->name}' has been created");
-        return redirect()->route('projects');
+
+        return redirect()
+            ->route('task-force', $taskForce)
+            ->with('success', "Project {$project->name} created");
     }
 
     public function show(Project $project)

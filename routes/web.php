@@ -28,12 +28,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Task-Force Routes
     Route::get('/task-forces', [TaskForceController::class, 'index'])->name(('task-forces'));
+    Route::get('/task-forces/new', [TaskForceController::class, 'create'])->name(('new-task-force'));
+    Route::post('/task-forces', [TaskForceController::class, 'store'])->name(('store-task-force'));
     Route::get('/task-forces/{taskForce:name}', [TaskForceController::class, 'show'])->name(('task-force'));
+    Route::get('/task-forces/{taskForce:name}/projects/new', [ProjectController::class, 'create'])->name(('new-project'));
+    Route::post('/task-forces/{taskForce:name}/projects', [ProjectController::class, 'store'])->name(('store-project'));
 
     // Projects Routes
     Route::get('/projects', [ProjectController::class, 'index'])->name(('projects'));
-    Route::get('/projects/new', [ProjectController::class, 'create'])->name(('new-project'));
-    Route::post('/projects', [ProjectController::class, 'store'])->name(('store-project'));
     Route::get('/projects/{project:id}', [ProjectController::class, 'show'])->name(('project'));
 
     Route::get('/posts/{post:id}', [PostController::class, 'show'])->name(('post'));

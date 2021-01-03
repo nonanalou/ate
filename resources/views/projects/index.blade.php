@@ -4,9 +4,6 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Projects') }}
             </h2>
-            <x-ate-link-button href="{{route('new-project')}}">
-                New Project
-            </x-ate-link-button>
         </div>
     </x-slot>
     <ul class="grid grid-cols-4 gap-4">

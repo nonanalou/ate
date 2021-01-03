@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Task-forces') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                {{ __('Task-forces') }}
+            </h2>
+            @can('create', \App\Models\TaskForce::class)
+            <x-ate-link-button href="{{route('new-task-force')}}">New Taskforce</x-ate-link-button>
+            @endcan
+        </div>
     </x-slot>
     <ul class="grid grid-cols-4 gap-4">
         @forelse($taskForces as $taskForce )

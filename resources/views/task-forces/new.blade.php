@@ -2,25 +2,18 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                {{ __('Create Project') }}
+                {{ __('Create Taskforce') }}
             </h2>
         </div>
     </x-slot>
     <div class="w-full max-w-lg p-8 mx-auto bg-white rounded shadow">
-        <h3 class="text-2xl font-semibold">New Project for {{ $taskForce->name }}</h3>
-        <form action="{{route('store-project', $taskForce)}}" method="post" class="w-full space-y-4">
+        <h3 class="text-2xl font-semibold">New Task-Force</h3>
+        <form action="{{route('store-task-force')}}" method="post" class="w-full space-y-4">
             @csrf
             <div>
                 <label for="name" class="block font-semibold">Name</label>
                 <x-jet-input class="w-full" type="text" name="name" id="name" value="{{old('name')}}" />
                 @error('name')
-                <div>{{$message}}</div>
-                @enderror
-            </div>
-            <div>
-                <label for="shortDescription" class="block font-semibold">short Description</label>
-                <x-jet-input class="w-full" type="text" name="shortDescription" id="shortDescription" value="{{old('shortDescription')}}" />
-                @error('shortDescription')
                 <div>{{$message}}</div>
                 @enderror
             </div>

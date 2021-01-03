@@ -8,7 +8,7 @@
     <div class="space-y-8">
         <div class="flex items-center justify-between">
             <h3 class="text-3xl text-cool-gray-800">Projects</h3>
-            <x-ate-link-button href="{{route('new-project')}}">
+            <x-ate-link-button href="{{route('new-project', $taskForce)}}">
                 New Project
             </x-ate-link-button>
         </div>
