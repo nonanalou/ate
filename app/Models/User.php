@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(TaskForce::class, 'task_force_memberships', 'user_id', 'task_force_id');
     }
+
+    public function isPartOfThe($taskForce)
+    {
+        return $this->taskForces()->where('task_force_id', $taskForce->id)->exists();
+    }
 }

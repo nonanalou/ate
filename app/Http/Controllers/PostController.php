@@ -14,11 +14,13 @@ class PostController extends Controller
 {
     public function create(Project $project)
     {
+        $this->authorize('create', [Post::class, $project->owner]);
         return view('posts.new', ['project' => $project]);
     }
 
     public function store(Request $request, Project $project)
     {
+        $this->authorize('create', [Post::class, $project->owner]);
         $values = $request->validate([
             'title' => 'required|max:40|min:2',
             'content' => 'required',
@@ -61,13 +63,13 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $this->authorize('update', $post);
+        $this->authorize('update', [$post, $post->parentProject->owner]);
         return view('posts.edit', ['post' => $post]);
     }
 
     public function update(Request $request, Post $post)
     {
-        $this->authorize('update', $post);
+        $this->authorize('update', [$post, $post->parentProject->owner]);
         $values = $request->validate([
             'title' => 'required|max:40|min:2',
             'content' => 'required',

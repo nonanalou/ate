@@ -18,11 +18,13 @@ class ProjectController extends Controller
 
     public function create(TaskForce $taskForce)
     {
+        $this->authorize('create', [Project::class, $taskForce]);
         return view('projects.new', ['taskForce' => $taskForce]);
     }
 
     public function store(TaskForce $taskForce, Request $request)
     {
+        $this->authorize('create', [Project::class, $taskForce]);
         $values = $request->validate([
             'name' => 'required|min:7|unique:projects,name',
             'shortDescription' => 'required|min:1'

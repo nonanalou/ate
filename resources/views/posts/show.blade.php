@@ -14,7 +14,7 @@
                     </h2>
                 </div>
                 <div>
-                    @can('update', $post)
+                    @can('update', [$post, $post->parentProject->owner])
                     <x-ate-link-secondary-button href="{{route('edit-post', $post)}}">
                         Edit
                     </x-ate-link-secondary-button>

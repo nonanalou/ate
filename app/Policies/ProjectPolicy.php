@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Project;
+use App\Models\TaskForce;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -39,9 +40,9 @@ class ProjectPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, TaskForce $taskForce)
     {
-        //
+        return $user->isPartOfThe($taskForce);
     }
 
     /**
@@ -51,9 +52,9 @@ class ProjectPolicy
      * @param  \App\Models\Project  $project
      * @return mixed
      */
-    public function update(User $user, Project $project)
+    public function update(User $user, Project $project, TaskForce $taskForce)
     {
-        //
+        return $user->isPartOfThe($taskForce);
     }
 
     /**
