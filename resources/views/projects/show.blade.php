@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Project: {{$project->name }}
+                <a class="hover:text-blue-400" href="{{route('task-force', $project->owner)}}">{{ $project->owner->name }}</a> / {{$project->name }}
             </h2>
         </div>
     </x-slot>

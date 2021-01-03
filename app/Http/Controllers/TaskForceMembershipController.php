@@ -23,8 +23,11 @@ class TaskForceMembershipController extends Controller
         $values = $request->validate([
             'user_id' => 'exists:users,id|required'
         ]);
+
+        $user = User::findOrFail($values['user_id']);
+
         TaskForceMembership::create([
-            'user_id' => $values['user_id'],
+            'user_id' => $user->id,
             'task_force_id' => $taskForce->id
         ]);
         return redirect()->route('new-task-force-member', $taskForce);
