@@ -8,7 +8,7 @@
     </x-slot>
     <div class="w-full max-w-lg p-8 mx-auto bg-white rounded shadow">
         <h3 class="text-2xl font-semibold">New Task-Force</h3>
-        <form action="{{route('store-task-force')}}" method="post" class="w-full space-y-4">
+        <form action="{{route('store-task-force')}}" method="POST" class="w-full space-y-4">
             @csrf
             <div>
                 <label for="name" class="block font-semibold">Name</label>
