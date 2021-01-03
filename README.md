@@ -1,3 +1,19 @@
+# ATE
+
+## Setup
+
+`composer install` ausführen.
+
+`.env.example` Kopieren zu `.env` und ausfüllen.
+
+DB migraten mit `php artisan migrate` (db user muss die Rechte zum Tabellen erstellen haben).
+
+In der DB zwei rollen erstellen `admin`, `member`.
+
+Docroot auf `public` setzen oder `php artisan serve`.
+
+Registrierter User kann mit dem Cli Kommando `php artisan ate:admin <userID>` zum Admin gemacht werden.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
