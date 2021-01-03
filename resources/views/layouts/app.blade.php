@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        @livewireStyles
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-dropdown')
+    @livewireStyles
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
+</head>
 
-            <!-- Page Content -->
-            <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $slot }}
-            </main>
+<body class="font-sans antialiased">
+    <div class="min-h-screen bg-gray-100">
+        @livewire('navigation-dropdown')
+
+        <!-- Page Heading -->
+        <header class="bg-white shadow">
+            <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+
+        @if (session('success'))
+        <div class="w-full max-w-md p-2 mx-auto my-4 font-semibold text-green-800 bg-green-300 border-2 border-green-600 rounded">
+            {{ session('success') }}
         </div>
+        @endif
 
-        @stack('modals')
+        <!-- Page Content -->
+        <main class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            {{ $slot }}
+        </main>
+    </div>
 
-        @livewireScripts
-    </body>
+    @stack('modals')
+
+    @livewireScripts
+</body>
+
 </html>
