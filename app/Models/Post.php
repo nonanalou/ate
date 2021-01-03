@@ -31,4 +31,9 @@ class Post extends Model
     {
         return $this->belongsTo(Project::class, 'project_id');
     }
+
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class, 'post_id');
+    }
 }
