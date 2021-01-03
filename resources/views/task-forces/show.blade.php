@@ -33,7 +33,7 @@
         <hr>
         <div class="flex items-center justify-between">
             <h3 class="text-3xl text-cool-gray-800">Members</h3>
-            <x-ate-link-button href="#">
+            <x-ate-link-button href="{{ route('new-task-force-member', $taskForce) }}">
                 Add Member
             </x-ate-link-button>
         </div>

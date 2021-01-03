@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskForceController;
+use App\Http\Controllers\TaskForceMembershipController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Task-Force Routes
     Route::get('/task-forces', [TaskForceController::class, 'index'])->name(('task-forces'));
     Route::get('/task-forces/{taskForce:name}', [TaskForceController::class, 'show'])->name(('task-force'));
+    Route::get('/task-forces/{taskForce:name}/members/new', [TaskForceMembershipController::class, 'create'])->name(('new-task-force-member'));
+    Route::post('/task-forces/{taskForce:name}/members', [TaskForceMembershipController::class, 'store'])->name(('store-task-force-member'));
+    Route::delete('/task-forces/{taskForce:name}/members/{membership:id}', [TaskForceMembershipController::class, 'destroy'])->name(('delete-task-force-member'));
 
     // Projects Routes
     Route::get('/projects', [ProjectController::class, 'index'])->name(('projects'));

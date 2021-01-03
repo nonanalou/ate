@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function taskForces()
+    {
+        return $this->belongsToMany(TaskForce::class, 'task_force_memberships', 'task_force_id', 'user_id');
+    }
 }
