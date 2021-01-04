@@ -15,7 +15,7 @@ class ProjectObserver
      */
     public function created(Project $project)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Project {$project->id} was created by User {$user->id}");
     }
 
@@ -27,7 +27,7 @@ class ProjectObserver
      */
     public function updated(Project $project)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Project {$project->id} was updated by User {$user->id}");
     }
 
@@ -39,7 +39,7 @@ class ProjectObserver
      */
     public function deleted(Project $project)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Project {$project->id} was deleted by User {$user->id}");
     }
 
@@ -51,7 +51,7 @@ class ProjectObserver
      */
     public function restored(Project $project)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Project {$project->id} was restored by User {$user->id}");
     }
 
@@ -63,7 +63,7 @@ class ProjectObserver
      */
     public function forceDeleted(Project $project)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Project {$project->id} was force deleted by User {$user->id}");
     }
 }

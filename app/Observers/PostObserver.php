@@ -15,7 +15,7 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Post {$post->id} was created by User {$user->id}");
     }
 
@@ -27,7 +27,7 @@ class PostObserver
      */
     public function updated(Post $post)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Post {$post->id} was updated by User {$user->id}");
     }
 
@@ -39,7 +39,7 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Post {$post->id} was deleted by User {$user->id}");
     }
 
@@ -51,7 +51,7 @@ class PostObserver
      */
     public function restored(Post $post)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Post {$post->id} was restored by User {$user->id}");
     }
 
@@ -63,7 +63,7 @@ class PostObserver
      */
     public function forceDeleted(Post $post)
     {
-        $user = auth()->user;
+        $user = auth()->user();
         Log::info("Post {$post->id} was force deleted by User {$user->id}");
     }
 }
